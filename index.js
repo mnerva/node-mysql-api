@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const cors = require('cors'); // Import the cors middleware
+const crypto = require('crypto')
 
 const app = express();
 const port = 3000;
@@ -36,14 +37,17 @@ app.post('/submit-text', (req, res) => {
   }
 
   // Insert text into the database
-  const query = 'INSERT INTO login (content, password) VALUES (?, ?)';
-  db.query(query, [text, password], (err, result) => {
+  const query = 'INSERT INTO login (tekst, password) VALUES (?, ?)';
+
+  const encryptedPassword = crypto.createHash('md5').update(password).digest('hex');
+
+  db.query(query, [text, encryptedPassword], (err, result) => {
     if (err) {
       console.error('Error inserting text into the database:', err);
       return res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json({ message: 'Text and password submitted and saved to the database' });
     }
-
-    res.json({ message: 'Text and password submitted and saved to the database' });
   });
 });
 
