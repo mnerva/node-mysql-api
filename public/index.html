@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Form</title>
+</head>
+<body>
+
+    <!-- Button to open the creation form -->
+    <button id="createButton">Create</button>
+
+    <div id="createFormContainer" style="display: none;">
+        <h1>Submit Form</h1>
+
+        <form id="submitForm">
+            <div>
+                <label for="textInput">Enter Text:</label>
+                <input type="text" id="textInput" name="text" required>
+            </div>
+
+            <div>
+                <label for="passwordInput">Enter Password:</label>
+                <input type="password" id="passwordInput" name="password" required>
+            </div>
+            
+            <button type="submit">Submit</button>
+            <button type="button" id="cancelButton">Cancel</button> <!-- Cancel button -->
+        </form>
+    </div>
+
+    <div id="messageBox" style="display: none;">
+        <p id="messageText"></p>
+    </div>
+
+    <!-- Include your external JavaScript file -->
+    <script src="index.js"></script>
+
+</body>
+</html>

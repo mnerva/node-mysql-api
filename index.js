@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const cors = require('cors'); // Import the cors middleware
 const crypto = require('crypto')
+const path = require('path')
 
 const app = express();
 const port = 3000;
@@ -27,6 +28,9 @@ db.connect((err) => {
     console.log('Connected to MySQL database');
   }
 });
+
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 // POST endpoint for submitting text
 app.post('/submit-text', (req, res) => {
